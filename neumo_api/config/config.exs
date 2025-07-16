@@ -7,6 +7,13 @@
 # General application configuration
 import Config
 
+config :neumo_api, NeumoApi.Guardian,
+  issuer: "NeumoApi",
+  secret_key: System.get_env("GUARDIAN_SECRET_KEY") || "will_change_this_secret_key_in_production",
+  ttl: {3, :days},
+  token_headers: [{"typ", "JWT"}, {"alg", "HS512"}],
+  serializer: NeumoApi.Guardian.Serializer
+
 config :neumo_api,
   ecto_repos: [NeumoApi.Repo],
   generators: [timestamp_type: :utc_datetime]
