@@ -29,7 +29,7 @@ defmodule NeumoApiWeb.Router do
     # our example protected route.
     scope "/protected" do
       pipe_through :api_auth
-      get "/", ProtectedContoller, :index
+      get "/", ProtectedController, :index
     end
   end
 end

@@ -13,7 +13,7 @@ defmodule NeumoApiWeb.ErrorView do
     %{errors: %{
       status: "422",
       title: "Unprocessable Entity",
-      details: NeumoApiWeb.ErrorHelpers.translate_errors(changeset)
+      details: NeumoApiWeb.ErrorHelpers.transalate_errors(changeset)
     }}
   end
 

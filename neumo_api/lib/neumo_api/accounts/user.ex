@@ -3,10 +3,15 @@ defmodule NeumoApi.Accounts.User do
   import Ecto.Changeset
   alias NeumoApi.Accounts.User
 
+  # Add these lines to match your migration's binary_id
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
+
   @derive {Jason.Encoder, only: [:id, :email]} # we will only encode these fields.
+
   schema "users" do
     field :email, :string
-    field :hashed_password, :string, virtual: true #hashing before saving.
+    field :password_hash, :string  # Changed from hashed_password to match migration
     field :password, :string, virtual: true, redact: true #for the input.
     field :password_confirmation, :string, virtual: true, redact: true # also only for the input.
 
@@ -22,6 +27,7 @@ defmodule NeumoApi.Accounts.User do
     |> validate_required([:email, :password, :password_confirmation])
     |> validate_length(:password, min: 8)
     |> validate_confirmation(:password, message: "does not match password")
+    |> validate_format(:email, ~r/@/, message: "must have @ sign")
     |> unique_constraint(:email)
     |> put_hashed_password()
   end
@@ -51,7 +57,8 @@ defmodule NeumoApi.Accounts.User do
 
   defp put_hashed_password(changeset) do
     case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: password}} -> put_change(changeset, :hashed_password, Bcrypt.hash_pwd_salt(password))
+      %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
+        put_change(changeset, :password_hash, Pbkdf2.hash_pwd_salt(password))  # Changed field name
       _->
         changeset
     end

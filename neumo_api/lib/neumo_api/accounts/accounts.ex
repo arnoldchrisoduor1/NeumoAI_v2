@@ -1,4 +1,4 @@
-defmodule NeumoApi.Accounts.Accounts do
+defmodule NeumoApi.Accounts do
   import Ecto.Query, warn: false
   alias NeumoApi.Repo
   alias NeumoApi.Accounts.User
@@ -18,7 +18,7 @@ defmodule NeumoApi.Accounts.Accounts do
   def authenticate_user(email, password) do
     user = Repo.get_by(User, email: email)
 
-    if user && Bcrypt.verify_pass(password, user.hashed_password) do
+    if user && Pbkdf2.verify_pass(password, user.password_hash) do  # Changed field name
       {:ok, user}
     else
       {:error, :unauthorized}
