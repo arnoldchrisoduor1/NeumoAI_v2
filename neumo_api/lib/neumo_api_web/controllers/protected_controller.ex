@@ -5,7 +5,7 @@ defmodule NeumoApiWeb.ProtectedController do
   action_fallback NeumoApiWeb.FallbackController
 
   def index(conn, _params) do
-    user = Guardian.Plug.curremt_resource(con)
+    user = Guardian.Plug.curremt_resource(conn)
 
     conn
     |> put_status(:ok)

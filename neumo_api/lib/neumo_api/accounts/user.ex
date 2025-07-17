@@ -19,7 +19,7 @@ defmodule NeumoApi.Accounts.User do
   def registration_changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:email, :password, :password_confirmation])
-    |> validate_required([:email, :password, :password_confimation])
+    |> validate_required([:email, :password, :password_confirmation])
     |> validate_length(:password, min: 8)
     |> validate_confirmation(:password, message: "does not match password")
     |> unique_constraint(:email)
@@ -34,7 +34,7 @@ defmodule NeumoApi.Accounts.User do
     |> cast(attrs, [:email])
     |> validate_required([:email])
     |> validate_format(:email, ~r/@/, message: "must have @ sign")
-    |> unique_constratint(:email)
+    |> unique_constraint(:email)
   end
 
   @doc """

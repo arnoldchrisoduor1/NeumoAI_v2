@@ -20,7 +20,7 @@ defmodule NeumoApiWeb.FallbackController do
     |> render(NeumoApiWeb.ErrorView, :"404")
   end
 
-  def call(conn, {error, message}) when is_binary(message) do
+  def call(conn, {:error, message}) when is_binary(message) do
     conn
     |> put_status(:internal_server_error)
     |> render(NeumoApiWeb.ErrorView, :"500", message: message)

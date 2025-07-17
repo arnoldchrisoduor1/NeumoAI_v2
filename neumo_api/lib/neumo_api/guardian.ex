@@ -1,5 +1,5 @@
 defmodule NeumoApi.Guardian do
-  use Guardian, otp_app: neumo_api
+  use Guardian, otp_app: :neumo_api
 
   # creating the resource guardian will use to identify the user.
   def subject_for_token(%{id: id}, _claims) do
@@ -23,9 +23,9 @@ defmodule NeumoApi.Guardian do
   end
 
   # i will use the :api as the default token strategy.
-  defp token_strategy do
-    :api
-  end
+  # defp token_strategy do
+  #   :api
+  # end
 
   # defining specifi claims for different token types if needed.
   def claims_for_token(resource, _claims) do

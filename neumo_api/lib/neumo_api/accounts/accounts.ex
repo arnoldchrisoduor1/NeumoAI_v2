@@ -29,7 +29,7 @@ defmodule NeumoApi.Accounts.Accounts do
   Gets a user by Id.
   """
   def get_user(id) do
-    Repo.get(User, user)
+    Repo.get(User, id)
   end
 
   @doc """

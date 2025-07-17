@@ -2,7 +2,7 @@ defmodule NeumoApiWeb.SessionController do
   use NeumoApiWeb, :controller
 
   alias NeumoApiWeb.Accounts
-  alis NeumoApiWeb.Guardian
+  alias NeumoApiWeb.Guardian
 
   action_fallback NeumoApiWeb.FallbackController
 

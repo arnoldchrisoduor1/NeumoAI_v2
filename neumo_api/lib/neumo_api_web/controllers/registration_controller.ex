@@ -1,7 +1,7 @@
 defmodule NeumoApiWeb.RegistrationController do
   use NeumoApiWeb, :controller
 
-  alias NeumoApiWeb.Accounts
+  alias NeumoApi.Accounts.Accounts
 
   action_fallback NeumoApiWeb.FallbackController
 

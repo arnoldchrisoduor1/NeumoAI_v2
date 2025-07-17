@@ -47,7 +47,8 @@ defmodule NeumoApi.MixProject do
 
       {:jason, "~> 1.2"},
       {:bcrypt_elixir, "~> 2.3"},
-      {:guardian, "~> 2.3"}
+      {:guardian, "~> 2.3"},
+      {:phoenix_view, "~>2.0"}
     ]
   end
 

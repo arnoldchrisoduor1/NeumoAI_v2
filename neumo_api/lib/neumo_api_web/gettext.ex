@@ -20,5 +20,5 @@ defmodule NeumoApiWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :neumo_api
+  use Gettext.Backend, otp_app: :neumo_api
 end
